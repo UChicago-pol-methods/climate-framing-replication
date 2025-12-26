@@ -129,8 +129,10 @@ coord_cartesian(ylim=c(1.4,1.8)) #limits of plot
 # Print the plot
 print(g)
 
-ggsave("../figures/pre_post_plot.png", plot = g, 
+ggsave("../figures/pre_post_plot.png", plot = g,
        width = 10, height = 5, units = "in", dpi = 300)
+ggsave("../figures/pre_post_plot.tiff", plot = g,
+       width = 10, height = 5, units = "in", dpi = 300, compression = "lzw")
 
 
 # Reshape data to long format for pre-test and post-test responses
@@ -212,8 +214,10 @@ coord_cartesian(ylim=c(-0.2,0.25)) #limits of plot
 # Print the plot
 print(g)
 
-ggsave("../figures/party_ate_plot.png", plot = g, 
+ggsave("../figures/party_ate_plot.png", plot = g,
        width = 10, height = 5, units = "in", dpi = 300)
+ggsave("../figures/party_ate_plot.tiff", plot = g,
+       width = 10, height = 5, units = "in", dpi = 300, compression = "lzw")
 
 
 # Recode treatment variable
@@ -256,6 +260,8 @@ point_plot <- ggplot(data,
 
 point_plot
 
-ggsave("../figures/response_distribution_plot.png", plot = point_plot, 
+ggsave("../figures/response_distribution_plot.png", plot = point_plot,
        width = 8, height = 6, units = "in", dpi = 300)
+ggsave("../figures/response_distribution_plot.tiff", plot = point_plot,
+       width = 8, height = 6, units = "in", dpi = 300, compression = "lzw")
 

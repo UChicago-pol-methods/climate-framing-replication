@@ -25,11 +25,15 @@ python -m ipykernel install --user --name ssi3 --display-name "Python (ssi3)"
 ### Starting from cleaned data
 
 3. Run `code/dataAnalysis.ipynb` in Jupyter (select the "Python (ssi3)" kernel)
-4. Run R scripts for tables and figures:
-   ```R
-   source("code/dataAnalysis.R")
-   source("code/figure-code.R")
+   - Outputs: `data/data_with_additional_vars.csv`
+4. Run R scripts for tables and figures (from the `code/` directory):
+   ```bash
+   cd code
+   Rscript dataAnalysis.R
+   Rscript figure-code.R
    ```
+   - `dataAnalysis.R` outputs: LaTeX tables in `tables/`
+   - `figure-code.R` outputs: PNG figures in `figures/`
 
 ## Requirements
 
