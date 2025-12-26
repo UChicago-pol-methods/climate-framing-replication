@@ -33,7 +33,7 @@ python -m ipykernel install --user --name ssi3 --display-name "Python (ssi3)"
    Rscript figure-code.R
    ```
    - `dataAnalysis.R` outputs: LaTeX tables in `tables/`
-   - `figure-code.R` outputs: PNG figures in `figures/`
+   - `figure-code.R` outputs: PNG and TIFF figures in `figures/`
 
 ## Requirements
 
