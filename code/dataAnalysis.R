@@ -142,9 +142,9 @@ party_means_latex <- bind_rows(party_means_estimates, party_se_estimates,
          `Pre test_Republican`, `Post test_Republican`)
 
 # Convert to LaTeX using kableExtra
-kbl(party_means_latex, 
+kbl(party_means_latex,
     col.names = c("Treatment", rep(c("Pre-test", "Post-test"), 3)),  # Update column names
-    caption= "Mean response estimates by party identification. \\label{tab:party_means}", 
+    caption= "Mean response estimates by party identification. \\label{tab:party_means}",
     align = c("l", rep("c", 6)),  # Align the columns (one for treatment, six for responses)
     # Add nicely grouped lines under column names
     midrule = "\\cmidrule(lr){2-3} \\cmidrule(lr){4-5} \\cmidrule(lr){6-7}",
@@ -154,17 +154,17 @@ kbl(party_means_latex,
     linesep = c("", "\\addlinespace"), # Add space between rows
     table.envir = "table*") |> # Special environment so table can span 2 columns
   # Add in the first level of column headers: Democrats, Independents, Republicans
-  add_header_above(c(" " = 1, "Democrat" = 2, "Independent" = 2, "Republican" = 2), 
-                   line = FALSE) |> 
+  add_header_above(c(" " = 1, "Democrat" = 2, "Independent" = 2, "Republican" = 2),
+                   line = FALSE) |>
   kable_styling(full_width = FALSE,  # Don't use full width
                 latex_options = c("hold_position")) |>  # LaTeX float options
   # Add a note at the bottom of the table
   footnote(general = paste0("\\\\footnotesize \\\\textit{Note:} The sample is all respondents, $n = $ \\\\num{",
-                            nrow(data), 
+                            nrow(data),
                             "}. Columns represent averages of policy index questions, pre- and post- delivery of treatment. Standard errors are reported below estimates in parentheses."),
            escape = FALSE,
            threeparttable = TRUE,
-           general_title = "") |> 
+           general_title = "") |>
   save_kable("../tables/party_means_table.tex")
 
 #' ## Estimates of treatment effects
@@ -434,16 +434,16 @@ kbl(bind_cols(fold_predictions_table[, -2], `Fold average` = fold_average_predic
     booktabs = TRUE,  # Use booktabs styling
     escape = FALSE, # Don't escape LaTeX special characters
     linesep = c("", "\\addlinespace"), # Add space between rows
-    table.envir = "table*") |> # Special environment so table can span 2 columns
+    table.envir = "table") |>
   kable_styling(full_width = FALSE,  # Don't use full width
                 latex_options = c("hold_position")) |>  # LaTeX float options
   # Add a note at the bottom of the table
-  footnote(paste0("\\\\footnotesize \\\\textit{Note:} The sample is all respondents, $n = $ \\\\num{",
-                  nrow(data), 
-                  "}, split in to five equal folds. Estimates are average treatment effects as compared to the control on the post-test policy index measure of (1) the best learned fixed treatment, (2) the best learned personalized treatment, and differences in (3) the best fixed treatment over the best personalized treatment, and (4) the best fixed treatment as compared to all other non-control framings. Each column represents estimates within a different fold; the last colmn represents average estimates across folds. Estimates are produced from causal forests.  + $p < 0.1$, * $p < 0.05$, ** $p < 0.01$, *** $p < 0.001$."),
+  footnote(paste0("The sample is all respondents, $n = $ \\\\num{",
+                  nrow(data),
+                  "}, split into five equal folds. Columns represent estimates within different folds; the last column represents average estimates across folds. Estimates are average treatment effects as compared to the control on the post-test policy index measure. Estimates are produced from causal forests. + $p < 0.1$, * $p < 0.05$, ** $p < 0.01$, *** $p < 0.001$."),
            escape = FALSE,
            threeparttable = TRUE,
-           general_title = "") |> 
+           general_title = "") |>
   save_kable("../tables/fold_estimates_table.tex")
 
 #' ## Summary statistics and balance tables
@@ -500,10 +500,14 @@ kbl(summary_stats,
     align = c("l", "c", "c", "c", "c"),
     booktabs = TRUE,
     format = "latex",
-    escape = TRUE, 
-    table.envir = "table*") |> # Special environment so table can span 2 columns) |>
+    escape = TRUE,
+    table.envir = "table") |>
   kable_styling(latex_options = c("hold_position"),
                 full_width = FALSE) |>
+  footnote(general = "The sample is all respondents, $n = $ \\\\num{2344}. Columns represent the mean, standard deviation, minimum, and maximum values for each variable.",
+           escape = FALSE,
+           threeparttable = TRUE,
+           general_title = "") |>
   save_kable("../tables/summary_stats_table.tex")
 
 #' Balance Table
@@ -549,10 +553,10 @@ kbl(balance_table,
     align = c('l', rep('c', length(treatments))),
     escape = TRUE,
     linesep = "",
-    table.envir = "table*") |>
+    table.envir = "table") |>
   kable_styling(latex_options = c("hold_position", "scale_down"),
                 full_width = FALSE) |>
-  footnote(general = "Note: Standard errors are reported in parentheses below estimates.",
+  footnote(general = "The sample is all respondents, $n = $ \\\\num{2344}. Columns represent treatment conditions. Standard errors are reported in parentheses below estimates.",
            escape = FALSE,
            threeparttable = TRUE,
            general_title = "") |>
@@ -597,9 +601,9 @@ party_means_latex <- bind_rows(party_means_estimates, party_se_estimates,
          `Pre test_Republican`, `Post test_Republican`)
 
 # Convert to LaTeX using kableExtra
-kbl(party_means_latex, 
+kbl(party_means_latex,
     col.names = c("Treatment", rep(c("Pre-test", "Post-test"), 3)),  # Update column names
-    caption= "Mean response estimates by party identification. \\label{tab:party_means}", 
+    caption= "Mean response estimates by party identification. \\label{tab:party_means}",
     align = c("l", rep("c", 6)),  # Align the columns (one for treatment, six for responses)
     # Add nicely grouped lines under column names
     midrule = "\\cmidrule(lr){2-3} \\cmidrule(lr){4-5} \\cmidrule(lr){6-7}",
@@ -609,17 +613,17 @@ kbl(party_means_latex,
     linesep = c("", "\\addlinespace"), # Add space between rows
     table.envir = "table*") |> # Special environment so table can span 2 columns
   # Add in the first level of column headers: Democrats, Independents, Republicans
-  add_header_above(c(" " = 1, "Democrat" = 2, "Independent" = 2, "Republican" = 2), 
-                   line = FALSE) |> 
+  add_header_above(c(" " = 1, "Democrat" = 2, "Independent" = 2, "Republican" = 2),
+                   line = FALSE) |>
   kable_styling(full_width = FALSE,  # Don't use full width
                 latex_options = c("hold_position")) |>  # LaTeX float options
   # Add a note at the bottom of the table
   footnote(general = paste0("\\\\footnotesize \\\\textit{Note:} The sample is all respondents, $n = $ \\\\num{",
-                            nrow(data), 
+                            nrow(data),
                             "}. Columns represent averages of policy index questions, pre- and post- delivery of treatment. Standard errors are reported below estimates in parentheses."),
            escape = FALSE,
            threeparttable = TRUE,
-           general_title = "") |> 
+           general_title = "") |>
   save_kable("../tables/party_means_table.tex")
 
 #' ### Party: Difference in Means
@@ -639,22 +643,22 @@ modelsummary(list(Democrat = model0_dem,
              output = 'latex',
              midrule = "\\cmidrule(lr){2-2} \\cmidrule(lr){3-3} \\cmidrule(lr){4-4}",
              coef_rename = rename_treatment_frame,
-             gof_omit = ".*", 
-             stars = TRUE ,
+             gof_omit = ".*",
+             stars = TRUE,
              estimate="{estimate}{stars}",
-             gof_map = list(list('raw' = 'nobs', 
-                                 'clean' = 'n', 
+             gof_map = list(list('raw' = 'nobs',
+                                 'clean' = 'n',
                                  'fmt' = f1)),
              escape = FALSE,
              title= 'Treatment effect estimates and response by party identification.\\label{tab:party_dim}',
-             table.envir = "table*") |> 
+             table.envir = "table") |>
   kable_styling(latex_options = c('HOLD_position')) |>
-  footnote(paste0("\\\\footnotesize \\\\textit{Note:} The sample is all respondents, $n = $ \\\\num{",
-                  nrow(data), 
-                  "}. Estimates are average treatment effects on the post-test policy index measure as compared to the control, and control mean. Estimates are produced as simple differences in means. Statistical significance is reported only for treatment effect estimates, not for control means. + $p < 0.1$, * $p < 0.05$, ** $p < 0.01$, *** $p < 0.001$."),
+  footnote(paste0("The sample is all respondents, $n = $ \\\\num{",
+                  nrow(data),
+                  "}. Columns represent party identification. Estimates are average treatment effects on the post-test policy index measure as compared to the control. Estimates are produced as simple differences in means. Standard errors are reported in parentheses below estimates. + $p < 0.1$, * $p < 0.05$, ** $p < 0.01$, *** $p < 0.001$."),
            escape = FALSE,
            threeparttable = TRUE,
-           general_title = '') |> 
+           general_title = '') |>
   save_kable("../tables/party_dim_table.tex")
 
 #' ### Party: Lin estimates with all covariates
@@ -1034,9 +1038,9 @@ party_means_latex <- bind_rows(
 
 
 # Convert to LaTeX using kableExtra
-kbl(party_means_latex, 
+kbl(party_means_latex,
     col.names = c("Treatment", rep(c("Pre-test", "Post-test"), 3)),  # Update column names
-    caption= "Mean response estimates by party identification. \\label{tab:party_means_passed}", 
+    caption= "Mean response estimates by party identification. \\label{tab:party_means_passed}",
     align = c("l", rep("c", 6)),  # Align the columns (one for treatment, six for responses)
     # Add nicely grouped lines under column names
     midrule = "\\cmidrule(lr){2-3} \\cmidrule(lr){4-5} \\cmidrule(lr){6-7}",
@@ -1044,17 +1048,17 @@ kbl(party_means_latex,
     booktabs = TRUE,  # Use booktabs styling
     escape = FALSE, # Don't escape LaTeX special characters
     linesep = c("", "\\addlinespace"), # Add space between rows
-    table.envir = "table*") |> # Special environment so table can span 2 columns
+    table.envir = "table") |>
   # Add in the first level of column headers: Democrats, Independents, Republicans
-  add_header_above(c(" " = 1, "Democrat" = 2, "Independent" = 2, "Republican" = 2), 
-                   line = FALSE) |> 
+  add_header_above(c(" " = 1, "Democrat" = 2, "Independent" = 2, "Republican" = 2),
+                   line = FALSE) |>
   kable_styling(full_width = FALSE,  # Don't use full width
                 latex_options = c("hold_position")) |>  # LaTeX float options
   # Add a note at the bottom of the table
-  footnote(general = paste0("\\\\footnotesize \\\\textit{Note:} The sample is respondents that passed both attention checks, $n = $ \\\\num{",
-                            nrow(data_check), 
-                            "}. Columns represent averages of policy index questions, pre- and post- delivery of treatment. Standard errors are reported below estimates in parentheses."),
+  footnote(general = paste0("The sample is respondents that passed both attention checks, $n = $ \\\\num{",
+                            nrow(data_check),
+                            "}. Columns represent party identification. Standard errors are reported in parentheses below estimates."),
            escape = FALSE,
            threeparttable = TRUE,
-           general_title = "") |> 
+           general_title = "") |>
   save_kable("../tables/party_means_table_passed.tex")
